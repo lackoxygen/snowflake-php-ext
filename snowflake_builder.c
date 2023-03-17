@@ -2,6 +2,18 @@
 #include <stdio.h>
 #include <sys/time.h>
 
+#ifndef SEQUENCE_BITS
+#define SEQUENCE_BITS 12 // 序列号占用位数
+#endif
+
+#ifndef MACHINE_ID_BITS
+#define MACHINE_ID_BITS 5   // 机器 ID 占用位数
+#endif
+
+#ifndef DATA_CENTER_ID_BITS
+#define DATA_CENTER_ID_BITS 5   // 数据中心 ID 占用位数
+#endif
+
 typedef uint64_t snowflake_id_t;
 
 // 时间戳起始时间，可以根据实际需求进行调整
@@ -12,15 +24,6 @@ const uint64_t DATA_CENTER_ID = 0;
 
 // 机器 ID，可根据实际需求进行调整
 const uint64_t MACHINE_ID = 0;
-
-// 序列号占用位数
-const uint64_t SEQUENCE_BITS = 12;
-
-// 机器 ID 占用位数
-const uint64_t MACHINE_ID_BITS = 5;
-
-// 数据中心 ID 占用位数
-const uint64_t DATA_CENTER_ID_BITS = 5;
 
 // 序列号掩码
 const uint64_t SEQUENCE_MASK = (1 << SEQUENCE_BITS) - 1;
@@ -83,4 +86,13 @@ snowflake_id_t generate_id() {
                         (MACHINE_ID << MACHINE_ID_LEFT_SHIFT) |
                         sequence;
     return id;
+}
+
+int main() {
+    snowflake_id_t id = generate_id();
+    char str[50];
+    sprintf(str, "%lld", id);
+
+    printf("%s", str);
+    return 0;
 }
