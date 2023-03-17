@@ -84,12 +84,3 @@ snowflake_id_t generate_id() {
                         sequence;
     return id;
 }
-
-int main() {
-    snowflake_id_t id = generate_id();
-    char str[50];
-    sprintf(str, "%lld", id);
-
-    printf("%s", str);
-    return 0;
-}
