@@ -24,6 +24,14 @@ static const zend_function_entry snowflake_class_methods[] = {
 };
 /* }}} */
 
+/* {{{ snowflake_functions[]
+ */
+static const zend_function_entry snowflake_functions[] = {
+
+        PHP_FE_END
+};
+/* }}} */
+
 zend_class_entry *Snowflake_ce;
 
 /* {{{ Snowflake::id
@@ -68,7 +76,7 @@ PHP_MINIT_FUNCTION(snowflake)
 {
     REGISTER_STRING_CONSTANT("SNOWFLAKE_VERSION", PHP_SNOWFLAKE_VERSION, CONST_CS | CONST_PERSISTENT);
     zend_class_entry Snowflake_entry;
-    INIT_CLASS_ENTRY(Snowflake_entry, "Snowflake", snowflake_class_methods);
+    INIT_CLASS_ENTRY(Snowflake_entry, "Lackoxygen\\Snowflake", snowflake_class_methods);
     Snowflake_ce = zend_register_internal_class_ex(&Snowflake_entry, NULL);//注册类
     return SUCCESS;
 }
@@ -80,7 +88,7 @@ PHP_MINIT_FUNCTION(snowflake)
 zend_module_entry snowflake_module_entry = {
 	STANDARD_MODULE_HEADER,
 	"snowflake",					/* Extension name */
-    snowflake_class_methods,		/* zend_function_entry */
+    snowflake_functions,		/* zend_function_entry */
     PHP_MINIT(snowflake),			/* PHP_MINIT - Module initialization */
 	NULL,							/* PHP_MSHUTDOWN - Module shutdown */
 	PHP_RINIT(snowflake),			/* PHP_RINIT - Request initialization */
