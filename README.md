@@ -17,11 +17,11 @@ make
 
 make install
 
-echo "extension=snowflake" >> php.ini
+echo "\nextension=snowflake" >> php.ini
 ```
 
 #### Example
 
 ```
-var_dump(Snowflake::id());
+var_dump(\Lackoxygen\Snowflake::id());
 ```
